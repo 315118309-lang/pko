@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PKO 赏金换算器 - Professional Poker Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="lang-switch">
+                <button class="lang-btn" id="langZh" data-lang="zh">中文</button>
+                <button class="lang-btn" id="langEn" data-lang="en">EN</button>
+            </div>
+            <div class="logo">
+                <span class="logo-icon">♠</span>
+                <h1 data-i18n="app_title">PKO Calculator</h1>
+            </div>
+            <p class="app-subtitle" data-i18n="app_subtitle">Professional Bounty Converter</p>
+        </header>
+
+        <main class="calculator-main">
+            <div class="card settings-card">
+                <div class="card-header">
+                    <h2 data-i18n="settings_title">🏆 Tournament Settings</h2>
+                </div>
+                <div class="card-content">
+                    <div class="input-group">
+                        <label for="startingStack" data-i18n="starting_stack">Starting Stack</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="startingStack" value="10000" min="100" step="100">
+                            <span class="input-suffix" data-i18n="chips_suffix">chips</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="startingBounty" data-i18n="starting_bounty">Starting Bounty</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="startingBounty" value="25" min="0.01" step="0.01">
+                            <span class="input-suffix">$</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card current-game-card">
+                <div class="card-header">
+                    <h2 data-i18n="current_title">🎯 Current Situation</h2>
+                </div>
+                <div class="card-content">
+                    <div class="input-group">
+                        <label for="currentBB" data-i18n="current_bb">Current Big Blind</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="currentBB" value="100" min="1" step="1">
+                            <span class="input-suffix">BB</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="opponentBounty" data-i18n="opponent_bounty">Opponent's Bounty</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="opponentBounty" value="50" min="0" step="0.01">
+                            <span class="input-suffix">$</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card result-card">
+                <div class="card-header">
+                    <h2 data-i18n="result_title">� Bounty Value</h2>
+                </div>
+                <div class="card-content">
+                    <div class="result-display">
+                        <div class="result-value" id="bountyValueBB">66.00</div>
+                        <div class="result-unit" data-i18n="result_unit">Big Blinds</div>
+                    </div>
+                    <div class="formula-section">
+                        <div class="formula-label" data-i18n="formula_label_main">Equity Formula:</div>
+                        <div class="formula-text" id="formulaText">(跟注BB数) ÷ (底池 + 赏金价值 + 跟注BB数) = 结果</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card equity-card">
+                <div class="card-header">
+                    <h2 data-i18n="equity_title">🟰 Equity</h2>
+                </div>
+                <div class="card-content">
+                    <div class="input-group">
+                        <label for="potBB" data-i18n="pot_size">Pot Size</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="potBB" value="200" min="0" step="1">
+                            <span class="input-suffix">BB</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="callBB" data-i18n="call_size">Call Size</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="callBB" value="100" min="0" step="1">
+                            <span class="input-suffix">BB</span>
+                        </div>
+                    </div>
+
+                    <div class="result-display" style="background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);">
+                        <div class="result-value" id="equityResultValue">33.33%</div>
+                        <div class="result-unit" data-i18n="equity_unit_label">Required Equity</div>
+                    </div>
+
+                    <div class="formula-section">
+                        <div class="formula-label" data-i18n="equity_calc_label">Equity Calculation:</div>
+                        <div class="formula-text" id="equityFormulaText">100 ÷ (200 + 66.00 + 100) = 33.33%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card range-card">
+                <div class="card-header">
+                    <h2 data-i18n="range_title">📊 范围建议</h2>
+                </div>
+                <div class="card-content">
+                    <div class="input-group">
+                        <label for="opponentRangePreset" data-i18n="opponent_preset_label">对手范围预设</label>
+                        <div class="input-wrapper">
+                            <select id="opponentRangePreset">
+                                <option value="standard" data-i18n="preset_standard">标准</option>
+                                <option value="tight" data-i18n="preset_tight">紧</option>
+                                <option value="loose" data-i18n="preset_loose">松</option>
+                                <option value="push15" data-i18n="preset_push15">Push 15bb</option>
+                                <option value="random" data-i18n="preset_random">随机</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="opponentRangeInput" data-i18n="opponent_custom_label">自定义对手范围</label>
+                        <div class="input-wrapper">
+                            <textarea id="opponentRangeInput" rows="2" placeholder="如: 77+, AJs+, KQs, AQo+"></textarea>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="range-mode-switch">
+                            <button class="mode-btn" id="applyOpponentRange" data-i18n="apply_range">应用范围</button>
+                            <button class="mode-btn" id="rangeModeText" data-mode="text" data-i18n="mode_text">文字</button>
+                            <button class="mode-btn active" id="rangeModeMatrix" data-mode="matrix" data-i18n="mode_matrix">矩阵</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="targetEquityPercent" data-i18n="target_equity_label">目标权益%</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="targetEquityPercent" value="33.33" min="0" max="100" step="0.01">
+                            <span class="input-suffix">%</span>
+                        </div>
+                    </div>
+                    <div class="range-output" id="rangeTextOutput"></div>
+                    <div class="range-matrix" id="rangeMatrixContainer" aria-label="range-matrix"></div>
+                    <div class="formula-section">
+                        <div class="formula-label" data-i18n="range_explain_label">计算依据</div>
+                        <div class="formula-text" id="rangeExplainText" data-i18n="range_explain_text">基于对手指定范围的加权平均胜率，选取不低于目标值的牌型组合。</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">💡</div>
+                <div class="info-content">
+                    <h3 data-i18n="info_core_title">Core Rule</h3>
+                    <p data-i18n="info_core_desc">1 starting bounty ≈ 33% of starting chips</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>Made for serious poker players</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

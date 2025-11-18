@@ -1,0 +1,433 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #2d3748;
+    line-height: 1.6;
+}
+
+/* App container */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.app-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 0;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.logo-icon {
+    font-size: 48px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.app-header h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: -0.02em;
+}
+
+.app-subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+    margin-top: 8px;
+}
+
+/* Language switch */
+.lang-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+}
+
+.lang-btn {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.lang-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Main content */
+.calculator-main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Cards */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.card-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2d3748;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Settings card */
+.settings-card {
+    grid-column: 1;
+}
+
+/* Current game card */
+.current-game-card {
+    grid-column: 2;
+}
+
+/* Result card */
+.result-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(247, 250, 252, 0.95) 100%);
+}
+
+/* Input groups */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 500;
+    color: #4a5568;
+    margin-bottom: 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 15px 50px 15px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    color: #2d3748;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.input-suffix {
+    position: absolute;
+    right: 20px;
+    font-size: 14px;
+    color: #a0aec0;
+    font-weight: 500;
+    pointer-events: none;
+}
+
+/* Result display */
+.result-display {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 40px;
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    border-radius: 16px;
+    color: white;
+}
+
+.result-value {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.result-unit {
+    font-size: 18px;
+    opacity: 0.9;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* Formula section */
+.formula-section {
+    background: #f7fafc;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+}
+
+.formula-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.formula-text {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #2d3748;
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+/* Info card */
+.info-card {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.info-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.info-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 5px;
+}
+
+.info-content p {
+    color: #4a5568;
+    font-size: 14px;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    padding: 30px 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .calculator-main {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .settings-card,
+    .current-game-card {
+        grid-column: 1;
+    }
+    
+    .app-container {
+        padding: 15px;
+    }
+    
+    .logo {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .app-header h1 {
+        font-size: 32px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .result-value {
+        font-size: 48px;
+    }
+    
+    .info-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Animation for result updates */
+@keyframes resultUpdate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.result-value.updating {
+    animation: resultUpdate 0.3s ease;
+}
+
+/* Input validation states */
+.input-wrapper input.error {
+    border-color: #fc8181;
+    background-color: #fff5f5;
+}
+
+.input-wrapper input.success {
+    border-color: #68d391;
+    background-color: #f0fff4;
+}
+
+.range-card {
+    grid-column: 1 / -1;
+}
+
+.range-mode-switch {
+    display: flex;
+    gap: 10px;
+}
+
+.mode-btn {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #f7fafc;
+    color: #2d3748;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.mode-btn.active {
+    background: #667eea;
+    color: #fff;
+    border-color: #667eea;
+}
+
+.range-output {
+    background: #f7fafc;
+    padding: 16px;
+    border-radius: 12px;
+    font-family: 'Courier New', monospace;
+    min-height: 60px;
+}
+
+.range-card select, .range-card textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #2d3748;
+    background: #fff;
+}
+
+.range-matrix {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.range-cell {
+    position: relative;
+    padding-top: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #edf2f7;
+}
+
+.range-cell .label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.range-cell.selected {
+    background: #48bb78;
+    border-color: #38a169;
+}
+
+.range-cell.selected .label {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .range-matrix {
+        gap: 4px;
+    }
+    .range-cell .label {
+        font-size: 10px;
+    }
+}
